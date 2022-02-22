@@ -41,14 +41,16 @@ class GameFragment : Fragment() {
         randomQuestion()
         var correct = 0
 
-        btnSubmit.setOnClickListener { 
-            if (num1 + num2 == txtAnswer.text.toString().toInt()) {
-                correct++
-                randomQuestion()
-                txtAnswer.setText("")
-            } else {
-                val action = GameFragmentDirections.actionResultFragment(correct)
-                Navigation.findNavController(it).navigate(action)
+        btnSubmit.setOnClickListener {
+            if (txtAnswer.text.toString() != "") {
+                if (num1 + num2 == txtAnswer.text.toString().toInt()) {
+                    correct++
+                    randomQuestion()
+                    txtAnswer.setText("")
+                } else {
+                    val action = GameFragmentDirections.actionResultFragment(correct)
+                    Navigation.findNavController(it).navigate(action)
+                }
             }
         }
 
